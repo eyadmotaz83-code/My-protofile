@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Abdelrahman Moataz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --surface: #111118; --border: #1e1e2e;
+      --accent: #7c3aed; --accent2: #06b6d4;
+      --text: #e8e8f0; --muted: #6b6b80; --tag-bg: #16161f;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,15,0.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; direction: ltr; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links .active { color: var(--accent); }
+
+    /* LAYOUT */
+    .page { max-width: 1000px; margin: 0 auto; padding: 7rem 2rem 5rem; }
+
+    /* HEADER */
+    .cv-header {
+      display: grid; grid-template-columns: auto 1fr auto;
+      align-items: center; gap: 2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem 2.5rem; margin-bottom: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .cv-header::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--accent), var(--accent2));
+    }
+    .avatar-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700;
+      color: var(--accent); background: var(--tag-bg);
+      box-shadow: 0 0 24px rgba(124,58,237,0.3);
+      flex-shrink: 0;
+    }
+    .header-info h1 { font-family: 'Cairo', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--text); }
+    .header-info p { font-family: 'Space Grotesk', sans-serif; color: var(--accent2); font-size: 0.95rem; margin-top: 0.2rem; }
+    .header-info .meta { color: var(--muted); font-size: 0.8rem; margin-top: 0.4rem; font-family: 'JetBrains Mono', monospace; }
+    .header-actions { display: flex; flex-direction: column; gap: 0.7rem; }
+    .btn-dl {
+      padding: 0.65rem 1.4rem; border-radius: 8px; background: var(--accent);
+      color: #fff; text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem; font-weight: 600; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 16px rgba(124,58,237,0.4);
+      white-space: nowrap; direction: ltr;
+    }
+    .btn-dl:hover { transform: translateY(-2px); box-shadow: 0 0 28px rgba(124,58,237,0.6); }
+    .btn-back {
+      padding: 0.65rem 1.4rem; border-radius: 8px;
+      border: 1px solid var(--border); color: var(--muted);
+      text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem; font-weight: 600; text-align: center;
+      transition: border-color 0.2s; direction: ltr; white-space: nowrap;
+    }
+    .btn-back:hover { border-color: var(--accent); color: var(--text); }
+
+    /* GRID LAYOUT */
+    .cv-grid { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; }
+
+    /* CARD */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-title {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+      color: var(--accent2); letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* CONTACT ITEMS */
+    .contact-item { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+    .contact-icon { font-size: 1rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.65rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .contact-val { font-size: 0.78rem; color: var(--text); word-break: break-all; }
+    .contact-item a { color: var(--text); text-decoration: none; }
+    .contact-item a:hover { color: var(--accent2); }
+
+    /* SKILL TAGS */
+    .skill-group { margin-bottom: 1rem; }
+    .skill-group-label { font-size: 0.7rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 0.5rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      background: var(--tag-bg); border: 1px solid var(--border);
+      border-radius: 5px; padding: 0.2rem 0.6rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text);
+    }
+    .tag.accent { border-color: var(--accent); color: var(--accent); }
+    .tag.accent2 { border-color: var(--accent2); color: var(--accent2); }
+
+    /* STATS */
+    .stat-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+    .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .stat-lbl { font-size: 0.75rem; color: var(--muted); }
+
+    /* AVAILABILITY */
+    .avail-badge {
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.4);
+      border-radius: 8px; padding: 0.6rem 1rem; text-align: center;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 600;
+      color: #22c55e;
+    }
+
+    /* SECTION TITLE */
+    .sec-title {
+      font-family: 'Cairo', sans-serif; font-size: 1.1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 1.2rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem;
+    }
+    .sec-title::before { content: ''; display: block; width: 3px; height: 1.1rem; background: var(--accent); border-radius: 2px; }
+
+    /* ABOUT */
+    .about-text { font-size: 0.9rem; color: #9999b0; line-height: 1.8; }
+
+    /* PROJECT CARDS */
+    .proj-card {
+      background: var(--tag-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .proj-card:hover { border-color: var(--accent); }
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+    .proj-name { font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); }
+    .proj-type { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--accent2); }
+    .proj-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.8rem; }
+
+    /* LEARNING */
+    .learn-box {
+      background: var(--tag-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem; font-size: 0.85rem; color: #9999b0; line-height: 1.8;
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .cv-grid { grid-template-columns: 1fr; }
+      .cv-header { grid-template-columns: auto 1fr; }
+      .header-actions { flex-direction: row; grid-column: 1/-1; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AM.dev</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="cv.html" class="active" style="color:var(--accent);border:1px solid var(--accent);padding:0.3rem 0.9rem;border-radius:6px;">CV</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="cv-header reveal">
+    <div class="avatar-circle">AM</div>
+    <div class="header-info">
+      <h1>Abdelrahman Moataz</h1>
+      <p>Web Developer &amp; Bot Developer</p>
+      <div class="meta">Egypt · 17 y/o · Freelance · Self-taught</div>
+    </div>
+    <div class="header-actions">
+      <a href="Abdelrahman_Moataz_CV.pdf" download class="btn-dl">⬇ Download PDF</a>
+      <a href="index.html" class="btn-back">← Portfolio</a>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="cv-grid">
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <div class="card reveal">
+        <div class="card-title">// Contact</div>
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:Eyadmotaz83@Gmail.com">Eyadmotaz83@Gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">✈️</span>
+          <div>
+            <div class="contact-label">Telegram</div>
+            <div class="contact-val"><a href="https://t.me/o_7dy" target="_blank">@o_7dy</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🎵</span>
+          <div>
+            <div class="contact-label">TikTok</div>
+            <div class="contact-val"><a href="https://tiktok.com/@o.7dy" target="_blank">@o.7dy</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">💬</span>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-val"><a href="https://wa.me/201208317532">01208317532</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-title">// Skills</div>
+        <div class="skill-group">
+          <div class="skill-group-label">Web Development</div>
+          <div class="tags">
+            <span class="tag accent">HTML5</span>
+            <span class="tag accent">CSS3</span>
+            <span class="tag accent">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Bot Development</div>
+          <div class="tags">
+            <span class="tag accent2">Python</span>
+            <span class="tag accent2">Baileys</span>
+            <span class="tag accent2">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Tools</div>
+          <div class="tags">
+            <span class="tag">Git</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-title">// Stats</div>
+        <div class="stat-item"><span class="stat-lbl">Web Projects</span><span class="stat-num">2+</span></div>
+        <div class="stat-item"><span class="stat-lbl">WhatsApp Bots</span><span class="stat-num">3+</span></div>
+        <div class="stat-item"><span class="stat-lbl">Years Old</span><span class="stat-num">17</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-title">// Availability</div>
+        <div class="avail-badge">✓ Open for Freelance</div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+
+      <div class="card reveal">
+        <div class="sec-title">About Me</div>
+        <p class="about-text">
+          A web developer and bot developer passionate about building clean interfaces and powerful automation tools. 
+          متخصص في بوتات واتساب بـ Baileys وPython، ومواقع Front-end بـ HTML/CSS/JS.
+           I gain practical experience through real work with real clients.
+
+        </p>
+      </div>
+
+      <div class="card reveal">
+        <div class="sec-title">Projects</div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-name">🍞 Bakery Website</div>
+            <div class="proj-type">Web Project</div>
+          </div>
+          <p class="proj-desc">موقع تجاري لعرض منتجات المخبوزات بتصميم أنيق ومتجاوب مع معلومات التواصل.</p>
+          <div class="tags">
+            <span class="tag accent">HTML</span>
+            <span class="tag accent">CSS</span>
+            <span class="tag accent">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-name">🦁 LION STORE</div>
+            <div class="proj-type">Web Project</div>
+          </div>
+          <p class="proj-desc">متجر إلكتروني بتصميم قوي وعصري لعرض المنتجات مع تجربة مستخدم سلسة.</p>
+          <div class="tags">
+            <span class="tag accent">HTML</span>
+            <span class="tag accent">CSS</span>
+            <span class="tag accent">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-name">⚡ WhatsApp Bots</div>
+            <div class="proj-type">Bot Development</div>
+          </div>
+          <p class="proj-desc">بوتات واتساب متعددة الوظائف — ردود تلقائية، إدارة مجموعات، وأوامر مخصصة.</p>
+          <div class="tags">
+            <span class="tag accent2">Python</span>
+            <span class="tag accent2">Baileys</span>
+            <span class="tag accent2">Node.js</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="sec-title">Learning Journey</div>
+        <div class="learn-box">
+           I gain practical experience through real work with real clients.
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
